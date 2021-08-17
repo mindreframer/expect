@@ -140,9 +140,7 @@ Deno.test({
   name: "rejects",
   fn: async () => {
     const rejects = expect(Promise.reject(true)).rejects;
-    for (
-      let method of ["toEqual", "toBe", "toBeTruthy", "toBeFalsy"]
-    ) {
+    for (let method of ["toEqual", "toBe", "toBeTruthy", "toBeFalsy"]) {
       assertEquals(typeof (rejects as any)[method], "function");
     }
   },
@@ -336,7 +334,10 @@ Deno.test({
       () => expect(Promise.resolve(NaN)).resolves.toBeNaN(),
     );
 
-    await assertAllFail(() => expect(10).toBeNaN(), () => expect(10).toBeNaN());
+    await assertAllFail(
+      () => expect(10).toBeNaN(),
+      () => expect(10).toBeNaN(),
+    );
   },
 });
 
